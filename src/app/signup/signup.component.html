@@ -1,0 +1,94 @@
+<div class="d-lg-flex justify-content-center">
+  <form [formGroup]="signupForm" (ngSubmit)="signUp()">
+    <div class="row mb-3 mt-2">
+      <div class="col-12">
+        <h2 class="text-center">Member Sign Up</h2>
+      </div>
+    </div>
+    @if(errordetails) {
+    <div class="row mb-3">
+      <div class="col-sm-10 alert alert-danger" role="alert">
+        <span class="form-text text-danger">
+          {{ errordetails }}
+        </span>
+      </div>
+    </div>
+    }
+    <div class="row mb-3">
+      <label for="fname" class="col-sm-4 col-form-label">First Name</label>
+      <div class="col-sm-7">
+        <input
+          type="text"
+          class="form-control"
+          id="fname"
+          formControlName="fname"
+          placeholder="Joe"
+        />
+        @if(signupForm.controls['fname'].touched &&
+        signupForm.controls['fname'].invalid) {
+        <div class="col-sm-5 text-danger">Enter valid first name!</div>
+        }
+      </div>
+    </div>
+    <div class="row mb-3">
+      <label for="lname" class="col-sm-4 col-form-label">Last Name</label>
+      <div class="col-sm-7">
+        <input
+          type="text"
+          class="form-control"
+          id="lname"
+          formControlName="lname"
+          placeholder="Lenda"
+        />
+        @if(signupForm.controls['lname'].touched &&
+        signupForm.controls['lname'].invalid) {
+        <div class="col-sm-5 text-danger">Enter valid last name!</div>
+        }
+      </div>
+    </div>
+    <div class="row mb-3">
+      <label for="email" class="col-sm-4 col-form-label">Email</label>
+      <div class="col-sm-7">
+        <input
+          type="email"
+          class="form-control"
+          id="email"
+          formControlName="email"
+          placeholder="ex: sv@gmail.com"
+        />
+        @if(signupForm.controls['email'].touched &&
+        signupForm.controls['email'].invalid) {
+        <div class="col-sm-5 text-danger">Invalid email!</div>
+        }
+      </div>
+    </div>
+    <div class="row mb-3">
+      <label for="password" class="col-sm-4 col-form-label">Password</label>
+      <div class="col-sm-7">
+        <input
+          type="password"
+          class="form-control"
+          id="password"
+          formControlName="password"
+          placeholder="Password"
+        />
+        @if(signupForm.controls['password'].touched &&
+        signupForm.controls['password'].invalid) {
+        <div class="col-auto text-danger">
+          Must be 5-10 characters long and alpha numeric
+        </div>
+        }
+      </div>
+    </div>
+    <div class="row mb-3 justify-content-center">
+      <div class="col-auto">
+        <button class="btn btn-primary" [disabled]="signupForm.invalid">
+          Sign Up
+        </button>
+      </div>
+      <div class="col-auto">
+        <a class="btn btn-link" routerLink="/login"> Login </a>
+      </div>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,62 @@
+<div class="d-md-flex justify-content-center">
+  <form [formGroup]="loginForm" (ngSubmit)="sumbitLogin()">
+    <div class="row mb-3 mt-2">
+      <div class="col-12">
+        <h2 class="text-center">Member Login</h2>
+      </div>
+    </div>
+    @if(errordetails) {
+    <div class="row mb-3">
+      <div class="col-sm-10 alert alert-danger" role="alert">
+        <span class="form-text text-danger">
+          {{ errordetails }}
+        </span>
+      </div>
+    </div>
+    }
+    <div class="row mb-3">
+      <label for="email" class="col-sm-2 col-form-label">Email</label>
+      <div class="col-sm-7">
+        <input
+          type="email"
+          class="form-control"
+          id="email"
+          formControlName="email"
+          placeholder="ex: sv@gmail.com"
+        />
+        @if(loginForm.controls['email'].touched &&
+        loginForm.controls['email'].invalid) {
+        <div class="col-sm-5 text-danger">Invalid email!</div>
+        }
+      </div>
+    </div>
+    <div class="row mb-3">
+      <label for="password" class="col-sm-2 col-form-label">Password</label>
+      <div class="col-sm-7">
+        <input
+          type="password"
+          class="form-control"
+          id="password"
+          formControlName="password"
+          placeholder="Password"
+        />
+        @if(loginForm.controls['password'].touched &&
+        loginForm.controls['password'].invalid) {
+        <div class="col-auto text-danger">
+          Must be 5-10 characters long and alpha numeric
+        </div>
+        }
+      </div>
+    </div>
+    <div class="row mb-3 justify-content-center">
+      <div class="col-auto">
+        <button class="btn btn-primary" [disabled]="loginForm.invalid">
+          Login
+        </button>
+      </div>
+      <div class="col-auto">
+        <a class="btn btn-link" routerLink="/signup">Sign Up</a>
+      </div>
+    </div>
+  </form>
+</div>

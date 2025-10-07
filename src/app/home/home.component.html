@@ -1,0 +1,25 @@
+<div class="container-fluid">
+  <div class="bg-light justify-content-end">
+    <div class="col-auto bg-light">
+      <form [formGroup]="todoForm" (ngSubmit)="addTodo()">
+        <input
+          type="text"
+          class="col-11"
+          placeholder="Add Todo"
+          formControlName="todo"
+        />
+        <button class="btn btn-primary" [disabled]="todoForm.invalid">
+          Add
+        </button>
+      </form>
+    </div>
+  </div>
+  <div class="row">
+    <h3>Todos:</h3>
+  </div>
+  <div class="row shadow bg-body-tertiary rounded">
+    @for (todo of todos; track todo;){
+    <app-todo [todo]="todo" (flipTodo)="markComplete($event)" />
+    }
+  </div>
+</div>

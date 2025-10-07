@@ -1,0 +1,39 @@
+@if (todo) {
+<div
+  [class]="[
+    'row',
+    'mb-3',
+    'form-check',
+    'bg-opacity-25',
+    todo.completed ? 'bg-warning' : ''
+  ]"
+  appHighlighter="cyan"
+>
+  <div class="row">
+    <div class="col">
+      <input
+        type="checkbox"
+        class="form-check-input"
+        [id]="todo.id"
+        [name]="todo.id"
+        [checked]="todo.completed"
+        (change)="onCheckboxChange($event)"
+      />
+      <label
+        [class]="[
+          'form-check-label',
+          todo.completed ? 'text-decoration-line-through' : 'fw-semibold'
+        ]"
+        [for]="todo.id"
+      >
+        {{ todo.todo | titlecase }}
+      </label>
+    </div>
+    <div class="col col-lg-3">
+      <span class="align-right">
+        Due by: {{ todo.dueby | date : "short" }}</span
+      >
+    </div>
+  </div>
+</div>
+}
